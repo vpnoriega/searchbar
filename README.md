@@ -12,7 +12,7 @@ https://searchspring.zendesk.com/hc/en-us/sections/115000119223-Search-API
 - When the search button is CLICKED, or user presses ENTER, the results display below
 
 # Displaying the Results
-- Use site ID “scmq7n” for this example
+- Use site ID for this example
 - Use “resultsFormat=native” as part of the API request to get your results back as JSON
 pass the search query using the “q” parameter
 - Display the product image using the “thumbnailImageUrl”, the product “name” and “price”
