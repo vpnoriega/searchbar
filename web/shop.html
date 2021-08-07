@@ -51,10 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<nav>
 						<ul>
 							<li><a href="index.html" class="active">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="404.html">Team</a></li>
 							<li><a href="shop.html">Shop Now</a></li>
-							<li><a href="contact.html">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -325,7 +322,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<div class="info-product-price">
 											<div class="grid_meta">
 												<div class="product_price">
-													<div class="grid-price ">
+													<div class="grid-price">
 														<span class="money ">$675.00</span>
 													</div>
 												</div>
@@ -987,8 +984,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			response.results.forEach(function (result) {
 				console.log(result.name)
-				console.log(result.price)
 				console.log(result.thumbnailImageUrl)
+				console.log(result.price)
+				console.log(result.msrp);
 			});
 		});
 	</script>
