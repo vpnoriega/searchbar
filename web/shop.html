@@ -483,6 +483,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				}, 1000);
 			});
 		});
+
 		//API Request
 		$.get("http://api.searchspring.net/api/search/search.json?",{
 			siteId: siteId,
@@ -532,6 +533,23 @@ $('.product-sec1').append(html);
 
 			});
 		});
+
+					var searchInput = $('#search').val();
+					$.get("http://api.searchspring.net/api/search/search.json?", {
+						siteId: siteId,
+						q: searchInput,
+						resultsFormat: "native"
+					}).done(function(response){
+						$("#submit").click(function(){
+									response.results.forEach(function(searchInput){
+										renderResults = $('.product-sec1').text(searchInput);
+									});
+					})
+
+				});
+		// var submitButton = document.querySelector('#submit');
+		// submitButton.addEventListener('click', searchProducts);
+		// $("#submit").onclick(searchProducts())
 
 	</script>
 	<!-- //end-smoth-scrolling -->
