@@ -1224,7 +1224,7 @@ color: #2fdab8;
     min-height: 225px;
 }
 .ads-grid_shop {
-    padding: 6em 0;
+    padding: 1em 0;
 }
 ul.short {
     text-align: left;
@@ -1384,7 +1384,7 @@ p.head_para {
 }
 @media(max-width:1440px){
 	.ads-grid_shop {
-        padding: 4em 0;
+        padding: 1em 0;
     }
     .inner_section_w3ls {
         margin-top: 3em;
@@ -1939,7 +1939,7 @@ p.head_para {
         font-size: 2.2em;
     }
     .ads-grid_shop {
-        padding: 2em 0;
+        padding: 1em 0;
     }
     .inner_section_w3ls {
         margin-top: 2em;

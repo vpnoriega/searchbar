@@ -102,6 +102,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- //banner -->
 	<!-- top Products -->
 	<div class="ads-grid_shop">
+		<!-- Top Pagination -->
+		<div class="pagination">
+			<nav aria-label="Page navigation">
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+							<span class="sr-only">Previous</span>
+						</a>
+					</li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item">
+						<a class="page-link" href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+							<span class="sr-only">Next</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
 		<div class="shop_inner_inf">
 			<!-- tittle heading -->
 
@@ -308,6 +331,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="clearfix"></div>
 		</div>
+		<!-- Bottom Pagination -->
+		<div class="pagination">
+			<nav aria-label="Page navigation">
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+							<span class="sr-only">Previous</span>
+						</a>
+					</li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item">
+						<a class="page-link" href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+							<span class="sr-only">Next</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
 	</div>
 	<!-- //top products -->
 	<div class="mid_slider_w3lsagile">
@@ -415,7 +460,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"></div>
 		</div>
 	</div>
-	</div>
 	<!-- //footer -->
 <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	<!-- js -->
@@ -473,20 +517,64 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript">
 
 		"use strict";
-		jQuery(document).ready(function ($) {
+
+		// assigning the URL to a const to reuse
+		const BASEURL = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n&resultsFormat=native"
+
+		$(document).ready(function ($) {
 			$(".scroll").click(function (event) {
 				event.preventDefault();
 				$('html,body').animate({
 					scrollTop: $(this.hash).offset().top
 				}, 1000);
 			});
+
+			//Window.location returns a Location object with information about the current location of the document. Search property is a query string that contains a ? followed by the params of the URL
+			// reference: https://developer.mozilla.org/en-US/docs/Web/API/Location/search
+
+			// On page load, call getResults function to find location params
+			getResults(window.location.search)
+			console.log(window.location);
 		});
 
-		//Render Results in HTML format
+		// getResults function checks condition of the searchParam to call either a default response of "New Items" or a response of searched items
+		function getResults(searchParam) {
+
+			let settings = {
+				"url": `${BASEURL}`,
+				"method": "GET",
+				"timeout": 0,
+			};
+
+			// if searchParam is empty, make the ajax request and invoke the renderResults function to render default results of "New Items"
+			if (searchParam === "") {
+				$.ajax(settings).done(function (response) {
+					response.results.forEach(function (result) {
+						renderResults(result);
+					});
+				});
+
+				// else, replace the url searchParam after the ? and make the ajax request to render the search results
+			} else {
+				settings.url = `${BASEURL}&${searchParam.substr(1)}` // "?q=pants"
+
+				$.ajax(settings).done(function (response) {
+					$('.product-sec1').empty(); //removing content from default view
+
+					response.results.forEach(function (result) {
+						renderResults(result);
+					});
+				});
+			}
+		}
+
+
+		//Render results in HTML format and check MSRP condition
 		function renderResults(result) {
 			var html = ""
 
-			html += `<div class="col-md-4 product-men">
+			if (`${result.price}` < `${result.msrp}`) {
+				html += `<div class="col-md-4 product-men">
 						<div class="product-shoe-info shoe">
 						<div class="men-pro-item">
 
@@ -504,9 +592,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h4><a href="single.html">${result.name}</a></h4>
 								<div class="info-product-price">
 									<div class="grid_meta">
-									<div class="product_price">
-										<span class="money"> $ ${result.price}</span>
-										<span class="money"> MSRP: $ ${result.msrp}</span>
+									<div class="product_price"> Price:
+										<span class="money" id="msrp-price">$${result.msrp}</span>
+										<span class="money">$${result.price}</span>
 									</div> <!-- product_price -->
 									</div> <!-- grid_meta -->
 								</div> <!-- info-product-price -->
@@ -516,42 +604,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div> <!--product-shoe-info shoe -->
 
 					</div> <!--col-md-4 product-men -->`
+			} else {
+				html += `<div class="col-md-4 product-men">
+						<div class="product-shoe-info shoe">
+						<div class="men-pro-item">
 
+						<div class="men-thumb-item">
+							<p><a href="${result.thumbnailImageUrl}"><img src="${result.thumbnailImageUrl}"></a></p>
+								<div class="men-cart-pro">
+								<div class="inner-men-cart-pro">
+									<a href = "single.html" class= "link-product-add-cart">Quick View</a>
+								</div> <!-- inner-men-cart-pro -->
+								</div> <!--men-cart-pro -->
+							<span class="product-new-top">New</span>
+						</div> <!--men-thumb-item -->
+
+						<div class="item-info-product">
+							<h4><a href="single.html">${result.name}</a></h4>
+								<div class="info-product-price">
+									<div class="grid_meta">
+									<div class="product_price"> Price:
+										<span class="money" id="msrp-price">$${result.msrp}</span>
+										<span class="money">$${result.price}</span>
+									</div> <!-- product_price -->
+									</div> <!-- grid_meta -->
+								</div> <!-- info-product-price -->
+						</div> <!-- item-info-product -->
+
+						</div> <!--men-pro-item -->
+						</div> <!--product-shoe-info shoe -->
+
+					</div> <!--col-md-4 product-men -->`
+			}
 			$('.product-sec1').append(html);
 		}
 
-		//API Request
-		$.get("http://api.searchspring.net/api/search/search.json?",{
-			siteId: siteId,
-			q: "new",
-			resultsFormat:"native"
-		}).done(function(response) {
-			response.results.forEach(function (result) {
-				renderResults(result);
+			// Search User Input
+			$('#submit').click(function (e) {
+				e.preventDefault();
+				var searchInput = $('#search').val();
+				console.log(searchInput);
+
+				//Check URL Search Params in window location to set query to searchInput in order to refresh a page of new results per input
+				if ('URLSearchParams' in window) {
+					let searchParams = new URLSearchParams(window.location.search);
+					searchParams.set("q", searchInput);
+					window.location.search = searchParams.toString();
+				}
 			});
-		});
-
-
-		// Search Input
-		$('#submit').click(function(e) {
-			e.preventDefault();
-			var searchInput = $('#search').val();
-			console.log(searchInput); // works
-
-			$.get("http://api.searchspring.net/api/search/search.json?", {
-				siteId: siteId,
-				q: searchInput,
-				resultsFormat:"native"
-			}).done(function(response) {
-				$('.product-sec1').empty(); //removing content from original display
-				console.log(response.results);
-				response.results.forEach(function (result) {
-					renderResults(result);
-				})
-
-		});
-
-	});
 
 	</script>
 	<!-- //end-smoth-scrolling -->

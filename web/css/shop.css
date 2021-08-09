@@ -753,16 +753,12 @@ input.checked {
 	text-align: center;
 }
 
-.item-info-product h4 a {
+.item-info-product, .product_price, h4, a{
     color: #080808;
     font-size: 15px;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 700;
-}
-
-.info-product-price {
-	margin: 12px 0;
 }
 
 span.item_price {
@@ -816,11 +812,19 @@ span.item_price {
     width: 80%;
 	text-align: left;
 }
+
 .info-product-price {
 	margin: 12px 0;
 	padding: 1em;
 	border-top: 1px solid #ddd;
+
 }
+
+#msrp-price{
+	text-decoration: line-through;
+	text-decoration-color: red;
+}
+
 button.shoe-cart {
     font-size: 1.2em;
     color: #fff;
