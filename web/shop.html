@@ -475,6 +475,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="/searchbar/keys.js"></script>
 	<script src="/searchbar/js-searchpage.js"></script>
 	<script type="text/javascript">
+
+		"use strict";
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
 				event.preventDefault();
@@ -484,72 +486,75 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 		});
 
+		//Render Results in HTML format
+		function renderResults(result) {
+			var html = '<div class="col-md-4 product-men">';
+
+			html += '<div class="product-shoe-info shoe">';
+			html += '<div class="men-pro-item">';
+
+			html += '<div class="men-thumb-item">';
+			html += '<p><a href="' + result.thumbnailImageUrl + '"><img src="' + result.thumbnailImageUrl + '">' + '</a></p>';
+			html += '<div class="men-cart-pro">';
+			html += '<div class="inner-men-cart-pro" >';
+			html += '<a href = "single.html" class= "link-product-add-cart">Quick View</a>';
+			html += '</div>'; //inner-men-cart-pro
+			html += '</div>'; //men-cart-pro
+			html += '<span class="product-new-top">New</span>';
+			html += '</div>'; //men-thumb-item
+
+			html += '<div class="item-info-product">';
+			html += `<h4><a href="single.html">${result.name}</a></h4>`;
+			html += '<div class="info-product-price">';
+			html += '<div class="grid_meta">';
+			html += '<div class="product_price">';
+			html += '<span class="money "> $' + result.price + '</span>';
+			html += '<span class="money "> MSRP: $' + result.msrp + '</span>';
+			html += '</div>'; //product_price
+			html += '</div>'; //grid_meta
+			html += '</div>'; //info-product-price
+			html += '</div>'; //item-info-product
+
+			html += '</div>'; //men-pro-item
+			html += '</div>'; //product-shoe-info shoe
+
+			html += '</div>'; //col-md-4 product-men
+
+			$('.product-sec1').append(html);
+		}
+
 		//API Request
 		$.get("http://api.searchspring.net/api/search/search.json?",{
 			siteId: siteId,
 			q: "new",
 			resultsFormat:"native"
 		}).done(function(response) {
-
 			response.results.forEach(function (result) {
-
-				function renderResults(result){
-					var html = '<div class="col-md-4 product-men">';
-					html +=	'<div class="product-shoe-info shoe">';
-					html += '<div class="men-pro-item">';
-					html += '<div class="men-thumb-item">';
-					html += '<p><a href="'+ result.thumbnailImageUrl + '"><img src="' + result.thumbnailImageUrl + '">' + '</a></p>';
-
-					html += '<div class="men-cart-pro">';
-					html += '<div class="inner-men-cart-pro" >';
-					html += '<a href = "single.html" class= "link-product-add-cart">Quick View</a>';
-					html += '</div>';
-					html += '</div>';
-
-					html += '<span class="product-new-top">New</span>';
-					html += '</div>'
-
-html += '<div class="item-info-product">'
-		html += '<h4><a href="single.html">' + result.name +  '</a></h4>'
-					html += '<div class="info-product-price">'
-					html += '<div class="grid_meta">'
-					html += '<div class="product_price">'
-					html += '<span class="money "> $' + result.price + '</span>'
-					html += '<span class="money "> MSRP: $' + result.msrp + '</span>'
-					html += '</div>'
-					html += '</div>'
-					html += '</div>'
-
-					html += '</div>'
-					html += '</div>'
-					html += '</div>'
-					html += '</div>'
-					html += '</div>'
-
-$('.product-sec1').append(html);
-				}
-
 				renderResults(result);
-
 			});
 		});
 
-					var searchInput = $('#search').val();
-					$.get("http://api.searchspring.net/api/search/search.json?", {
-						siteId: siteId,
-						q: searchInput,
-						resultsFormat: "native"
-					}).done(function(response){
-						$("#submit").click(function(){
-									response.results.forEach(function(searchInput){
-										renderResults = $('.product-sec1').text(searchInput);
-									});
-					})
 
-				});
-		// var submitButton = document.querySelector('#submit');
-		// submitButton.addEventListener('click', searchProducts);
-		// $("#submit").onclick(searchProducts())
+		// Search Input
+		$('#submit').click(function(e) {
+			e.preventDefault();
+			var searchInput = $('#search').val();
+			console.log(searchInput); // works
+
+			$.get("http://api.searchspring.net/api/search/search.json?", {
+				siteId: siteId,
+				q: searchInput,
+				resultsFormat:"native"
+			}).done(function(response) {
+				$('.product-sec1').empty(); //removing content from original display
+				console.log(response.results);
+				response.results.forEach(function (result) {
+					renderResults(result);
+				})
+
+		});
+
+	});
 
 	</script>
 	<!-- //end-smoth-scrolling -->
