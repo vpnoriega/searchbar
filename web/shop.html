@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-	<title>Downy Shoes an Ecommerce Category Bootstrap Responsive Website Template | Shop :: w3layouts</title>
+	<title>Searchspring Shop</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="wrapper_top_w3layouts">
 			<div class="header_agileits">
 				<div class="logo inner_page_log">
-					<h1><a class="navbar-brand" href="index.html"><span>Search</span> <i>Spring</i></a></h1>
+					<h1><a class="navbar-brand" href="index.html"><span>Searchspring</span> <i>Shop</i></a></h1>
 				</div>
 				<div class="overlay overlay-contentpush">
 					<button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -110,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="side-bar col-md-3">
 				<div class="search-hotel">
 					<h3 class="agileits-sear-head">Search Here..</h3>
-					<form action="shop.html" method="get">
+					<form action="#" method="post">
 						<input id="search" type="search" placeholder="Product name..." name="search" required="">
 						<input id="submit" type="submit" value="">
 					</form>
@@ -301,11 +301,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="wrapper_top_shop">
 					<div class="clearfix"></div>
 					<!-- product-sec1 -->
-					<div class="product-sec1">
-
-
-					</div>
-
+					<div class="product-sec1"></div>
 					<!-- //product-sec1 -->
 					<div class="clearfix"></div>
 				</div>
@@ -347,7 +343,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="footer_agileinfo_w3">
 		<div class="footer_inner_info_w3ls_agileits">
 			<div class="col-md-3 footer-left">
-				<h2><a href="index.html">Searchspring </a></h2>
+				<h2><a href="index.html">Searchspring Shop </a></h2>
 				<p>Lorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
 				<ul class="social-nav model-3d-0 footer-social social two">
 					<li>
@@ -488,37 +484,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		//Render Results in HTML format
 		function renderResults(result) {
-			var html = '<div class="col-md-4 product-men">';
+			var html = ""
 
-			html += '<div class="product-shoe-info shoe">';
-			html += '<div class="men-pro-item">';
+			html += `<div class="col-md-4 product-men">
+						<div class="product-shoe-info shoe">
+						<div class="men-pro-item">
 
-			html += '<div class="men-thumb-item">';
-			html += '<p><a href="' + result.thumbnailImageUrl + '"><img src="' + result.thumbnailImageUrl + '">' + '</a></p>';
-			html += '<div class="men-cart-pro">';
-			html += '<div class="inner-men-cart-pro" >';
-			html += '<a href = "single.html" class= "link-product-add-cart">Quick View</a>';
-			html += '</div>'; //inner-men-cart-pro
-			html += '</div>'; //men-cart-pro
-			html += '<span class="product-new-top">New</span>';
-			html += '</div>'; //men-thumb-item
+						<div class="men-thumb-item">
+							<p><a href="${result.thumbnailImageUrl}"><img src="${result.thumbnailImageUrl}"></a></p>
+								<div class="men-cart-pro">
+								<div class="inner-men-cart-pro">
+									<a href = "single.html" class= "link-product-add-cart">Quick View</a>
+								</div> <!-- inner-men-cart-pro -->
+								</div> <!--men-cart-pro -->
+							<span class="product-new-top">New</span>
+						</div> <!--men-thumb-item -->
 
-			html += '<div class="item-info-product">';
-			html += `<h4><a href="single.html">${result.name}</a></h4>`;
-			html += '<div class="info-product-price">';
-			html += '<div class="grid_meta">';
-			html += '<div class="product_price">';
-			html += '<span class="money "> $' + result.price + '</span>';
-			html += '<span class="money "> MSRP: $' + result.msrp + '</span>';
-			html += '</div>'; //product_price
-			html += '</div>'; //grid_meta
-			html += '</div>'; //info-product-price
-			html += '</div>'; //item-info-product
+						<div class="item-info-product">
+							<h4><a href="single.html">${result.name}</a></h4>
+								<div class="info-product-price">
+									<div class="grid_meta">
+									<div class="product_price">
+										<span class="money"> $ ${result.price}</span>
+										<span class="money"> MSRP: $ ${result.msrp}</span>
+									</div> <!-- product_price -->
+									</div> <!-- grid_meta -->
+								</div> <!-- info-product-price -->
+						</div> <!-- item-info-product -->
 
-			html += '</div>'; //men-pro-item
-			html += '</div>'; //product-shoe-info shoe
+						</div> <!--men-pro-item -->
+						</div> <!--product-shoe-info shoe -->
 
-			html += '</div>'; //col-md-4 product-men
+					</div> <!--col-md-4 product-men -->`
 
 			$('.product-sec1').append(html);
 		}
