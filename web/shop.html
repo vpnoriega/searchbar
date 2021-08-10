@@ -106,21 +106,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="pagination">
 			<nav aria-label="Page navigation">
 				<ul class="pagination">
-					<li class="page-item">
-						<a class="page-link" href="#" aria-label="Previous">
-							<span aria-hidden="true">&laquo;</span>
-							<span class="sr-only">Previous</span>
-						</a>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item">
-						<a class="page-link" href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							<span class="sr-only">Next</span>
-						</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
@@ -335,21 +320,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="pagination">
 			<nav aria-label="Page navigation">
 				<ul class="pagination">
-					<li class="page-item">
-						<a class="page-link" href="#" aria-label="Previous">
-							<span aria-hidden="true">&laquo;</span>
-							<span class="sr-only">Previous</span>
-						</a>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item">
-						<a class="page-link" href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							<span class="sr-only">Next</span>
-						</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
@@ -519,7 +489,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		"use strict";
 
 		// assigning the URL to a const to reuse
-		const BASEURL = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n&resultsFormat=native"
+		const BASEURL = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n&resultsFormat=native&page=pageNumber"
 
 		$(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -536,6 +506,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			getResults(window.location.search)
 			console.log(window.location);
 		});
+
+		function renderPagination(pagination) {
+			console.log(pagination)
+			if(pagination.totalPages === 1) return "";
+
+			let searchParams = new URLSearchParams(window.location.search);
+			let siteURL = window.location.href.split('?')[0];
+
+			var paginationHtml = "";
+
+			// add previous button <<
+			if(searchParams.has('page')) searchParams.delete("page");
+			paginationHtml += `<li class="page-item"><a class="page-link" href="${siteURL}?${searchParams.toString()}&page=${pagination.previousPage}" aria-label="Previous">
+<span aria-hidden="true">&laquo;</span>
+<span class="sr-only">Previous</span></a></li>`
+
+			for(var i = 1; i <= pagination.totalPages; i++){
+				if(searchParams.has("page")) searchParams.delete("page");
+				searchParams.append("page", i.toString());
+				paginationHtml += `<li class="page-item"><a class="page-link" href="${siteURL}?${searchParams.toString()}">${i}</a></li>`
+			}
+
+			// add next button >>
+			if(searchParams.has('page')) searchParams.delete("page");
+			paginationHtml += `<li class="page-item"><a class="page-link" href="${siteURL}?${searchParams.toString()}&page=${pagination.nextPage}" aria-label="Previous">
+<span aria-hidden="true">&raquo;</span>
+<span class="sr-only">Next</span></a></li>`
+
+			// combine the html and return it
+			$('ul.pagination').append(paginationHtml);
+
+		}
 
 		// getResults function checks condition of the searchParam to call either a default response of "New Items" or a response of searched items
 		function getResults(searchParam) {
@@ -564,6 +566,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					response.results.forEach(function (result) {
 						renderResults(result);
 					});
+
+					renderPagination(response.pagination);
+
+					console.log(response);
+					console.dir(window.location);
 				});
 			}
 		}
@@ -573,7 +580,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function renderResults(result) {
 			var html = ""
 
-			if (`${result.price}` < `${result.msrp}`) {
 				html += `<div class="col-md-4 product-men">
 						<div class="product-shoe-info shoe">
 						<div class="men-pro-item">
@@ -593,7 +599,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="info-product-price">
 									<div class="grid_meta">
 									<div class="product_price"> Price:
-										<span class="money" id="msrp-price">$${result.msrp}</span>
+										<span class="money ${result.price < result.msrp ? "money-strike" : ""}" id="msrp-price">$${result.msrp}</span>
 										<span class="money">$${result.price}</span>
 									</div> <!-- product_price -->
 									</div> <!-- grid_meta -->
@@ -604,40 +610,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div> <!--product-shoe-info shoe -->
 
 					</div> <!--col-md-4 product-men -->`
-			} else {
-				html += `<div class="col-md-4 product-men">
-						<div class="product-shoe-info shoe">
-						<div class="men-pro-item">
 
-						<div class="men-thumb-item">
-							<p><a href="${result.thumbnailImageUrl}"><img src="${result.thumbnailImageUrl}"></a></p>
-								<div class="men-cart-pro">
-								<div class="inner-men-cart-pro">
-									<a href = "single.html" class= "link-product-add-cart">Quick View</a>
-								</div> <!-- inner-men-cart-pro -->
-								</div> <!--men-cart-pro -->
-							<span class="product-new-top">New</span>
-						</div> <!--men-thumb-item -->
-
-						<div class="item-info-product">
-							<h4><a href="single.html">${result.name}</a></h4>
-								<div class="info-product-price">
-									<div class="grid_meta">
-									<div class="product_price"> Price:
-										<span class="money" id="msrp-price">$${result.msrp}</span>
-										<span class="money">$${result.price}</span>
-									</div> <!-- product_price -->
-									</div> <!-- grid_meta -->
-								</div> <!-- info-product-price -->
-						</div> <!-- item-info-product -->
-
-						</div> <!--men-pro-item -->
-						</div> <!--product-shoe-info shoe -->
-
-					</div> <!--col-md-4 product-men -->`
-			}
 			$('.product-sec1').append(html);
 		}
+
 
 			// Search User Input
 			$('#submit').click(function (e) {
@@ -648,8 +624,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				//Check URL Search Params in window location to set query to searchInput in order to refresh a page of new results per input
 				if ('URLSearchParams' in window) {
 					let searchParams = new URLSearchParams(window.location.search);
-					searchParams.set("q", searchInput);
+					//checking if there is a current page so it can delete the page param for a new search
+					if(searchParams.has('page')) searchParams.delete("page");
+					searchParams.set("q",searchInput);
 					window.location.search = searchParams.toString();
+
 				}
 			});
 
