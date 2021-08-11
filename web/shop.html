@@ -489,7 +489,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		"use strict";
 
 		// assigning the URL to a const to reuse
-		const BASEURL = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n&resultsFormat=native&page=pageNumber"
+		const BASEURL = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n&resultsFormat=native"
 
 		$(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -514,15 +514,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			let searchParams = new URLSearchParams(window.location.search);
 			let siteURL = window.location.href.split('?')[0];
 
-			var paginationHtml = "";
+			let paginationHtml = "";
 
 			// add previous button <<
 			if(searchParams.has('page')) searchParams.delete("page");
-			paginationHtml += `<li class="page-item"><a class="page-link" href="${siteURL}?${searchParams.toString()}&page=${pagination.previousPage}" aria-label="Previous">
+			paginationHtml += `<li class="page-item"><a class="page-link" href="${siteURL}?${searchParams.toString()}&page=${pagination.previousPage}" aria-label="Previous" id="back-btn">
 <span aria-hidden="true">&laquo;</span>
 <span class="sr-only">Previous</span></a></li>`
 
-			for(var i = 1; i <= pagination.totalPages; i++){
+			for(let i = 1; i <= pagination.totalPages; i++){
 				if(searchParams.has("page")) searchParams.delete("page");
 				searchParams.append("page", i.toString());
 				paginationHtml += `<li class="page-item"><a class="page-link" href="${siteURL}?${searchParams.toString()}">${i}</a></li>`
@@ -559,6 +559,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				// else, replace the url searchParam after the ? and make the ajax request to render the search results
 			} else {
 				settings.url = `${BASEURL}&${searchParam.substr(1)}` // "?q=pants"
+				console.log(settings.url)
+				console.log(searchParam.substr(1))
 
 				$.ajax(settings).done(function (response) {
 					$('.product-sec1').empty(); //removing content from default view
@@ -580,6 +582,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function renderResults(result) {
 			var html = ""
 
+			if(result.msrp !== null && result.price < result.msrp){
 				html += `<div class="col-md-4 product-men">
 						<div class="product-shoe-info shoe">
 						<div class="men-pro-item">
@@ -599,8 +602,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="info-product-price">
 									<div class="grid_meta">
 									<div class="product_price"> Price:
-										<span class="money ${result.price < result.msrp ? "money-strike" : ""}" id="msrp-price">$${result.msrp}</span>
-										<span class="money">$${result.price}</span>
+									<span class="money">$${result.price}</span>
+									Msrp: <span class="money" id="msrp-price">$${result.msrp}</span>
 									</div> <!-- product_price -->
 									</div> <!-- grid_meta -->
 								</div> <!-- info-product-price -->
@@ -610,16 +613,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div> <!--product-shoe-info shoe -->
 
 					</div> <!--col-md-4 product-men -->`
+			} else {
+				html += `<div class="col-md-4 product-men">
+						<div class="product-shoe-info shoe">
+						<div class="men-pro-item">
+
+						<div class="men-thumb-item">
+							<p><a href="${result.thumbnailImageUrl}"><img src="${result.thumbnailImageUrl}"></a></p>
+								<div class="men-cart-pro">
+								<div class="inner-men-cart-pro">
+									<a href = "single.html" class= "link-product-add-cart">Quick View</a>
+								</div> <!-- inner-men-cart-pro -->
+								</div> <!--men-cart-pro -->
+							<span class="product-new-top">New</span>
+						</div> <!--men-thumb-item -->
+
+						<div class="item-info-product">
+							<h4><a href="single.html">${result.name}</a></h4>
+								<div class="info-product-price">
+									<div class="grid_meta">
+									<div class="product_price"> Price:
+									<span class="money">$${result.price}</span>
+									</div> <!-- product_price -->
+									</div> <!-- grid_meta -->
+								</div> <!-- info-product-price -->
+						</div> <!-- item-info-product -->
+
+						</div> <!--men-pro-item -->
+						</div> <!--product-shoe-info shoe -->
+
+					</div> <!--col-md-4 product-men -->`
+			}
+
+
+
+
+
 
 			$('.product-sec1').append(html);
 		}
 
 
-			// Search User Input
+			//Search User Input
 			$('#submit').click(function (e) {
 				e.preventDefault();
 				var searchInput = $('#search').val();
 				console.log(searchInput);
+
 
 				//Check URL Search Params in window location to set query to searchInput in order to refresh a page of new results per input
 				if ('URLSearchParams' in window) {
