@@ -303,6 +303,7 @@ p.sbmincart-empty-text {
 }
 .product-men {
     padding-left: 0;
+	border: black solid;
 }
 /*-- Model-Slider --*/
 /*-- effect on products --*/
@@ -442,9 +443,10 @@ ul.stars li a {
 ul.stars li a:hover {
 	color:#fb383b;
 }
+
 .product-shoe-info {
     padding: 15px;
-    border: 1px solid #e4e4e4;
+	border: solid lightpink;
 }
 /*-- //effect on products --*/
 
@@ -555,7 +557,6 @@ ul.stars li a:hover {
 }
 
 .search-hotel #search {
-    background: #f5f5f5;
     border: none;
     width: 81%;
     outline: none;
@@ -566,7 +567,7 @@ ul.stars li a:hover {
 }
 
 .search-hotel form #submit{
-    background: url(../images/search.png) no-repeat 7px 6px #151414;
+    background: url(../images/search.png) no-repeat 7px 6px rgba(0, 0, 0, 0.75);
     width: 44px;
     height: 39px;
     border: none;
@@ -587,7 +588,9 @@ h3.agileits-sear-head {
 }
 .search-hotel {
 	padding: 15px 0;
-	border-bottom: 1px solid #e5e3db;
+	position: relative;
+	left: 6%;
+
 }
 
 
@@ -739,8 +742,9 @@ input.checked {
 }
 
 .wrapper_top_shop {
-    padding: 15px;
-    border: 1px solid #e4e4e4;
+    padding: 1em;
+    border: solid #a792e0;
+	margin: 1em;
 }
 /*-- //special deals --*/
 
@@ -751,6 +755,7 @@ input.checked {
 }
 .item-info-product {
 	text-align: center;
+
 }
 
 .item-info-product, .product_price, h4, a{
@@ -759,6 +764,8 @@ input.checked {
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 700;
+	padding: .5em;
+	text-align: center;
 }
 
 span.item_price {
@@ -805,7 +812,7 @@ span.item_price {
 	color: #000;
 }
 .product-men img {
-    width: 100%;
+    width: 70%;
 }
 .grid_meta {
     float: left;
@@ -815,7 +822,7 @@ span.item_price {
 
 .info-product-price {
 	margin: 12px 0;
-	padding: 1em;
+	padding: .5em;
 	border-top: 1px solid #ddd;
 
 }
@@ -1141,6 +1148,7 @@ input.button.add {
 		width: 47%;
 		margin: 0.5em;
 		float: left;
+
 	}
 	#staplesbmincart {
 		left: 52%;

@@ -82,7 +82,7 @@ a:focus {
 .logo.inner_page_log {
     position: absolute;
     z-index: 99;
-    left: 7%;
+    left: 6%;
     margin-top: 47px;
 }
 .navbar-brand {
@@ -1233,8 +1233,9 @@ ul.short {
 ul.short li {
     display: inline-block;
     text-transform: uppercase;
-    color: #fff;
-    font-size: 0.8em;
+
+	color: aqua;
+
     font-weight:600;
     letter-spacing: 1px;
 }
@@ -1242,8 +1243,9 @@ ul.short li {
     padding: 0 1.5em;
 }
 ul.short li a {
-    color: #fb383b;
+	color: #fff;
     text-decoration: none;
+	font-size: 0.8em;
 }
 .inner_section_w3ls {
     margin-top: 4em;

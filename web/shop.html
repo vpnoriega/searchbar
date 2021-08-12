@@ -58,30 +58,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="mobile-nav-button">
 					<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
 				</div>
-				<!-- cart details -->
-				<div class="top_nav_right">
-					<div class="shoecart shoecart2 cart cart box_1">
-						<form action="#" method="post" class="last">
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="display" value="1">
-							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-						</form>
-					</div>
-				</div>
 			</div>
 		</div>
-		<!-- //cart details -->
 		<!-- search -->
 		<div class="search_w3ls_agileinfo">
+			<!-- before clicking -->
 			<div class="cd-main-header">
 				<ul class="cd-header-buttons">
 					<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
 				</ul>
 			</div>
+			<!-- after clicking -->
 			<div id="cd-search" class="cd-search">
+				<div class="search-hotel">
 				<form action="#" method="post">
-					<input name="Search" type="search" placeholder="Click enter after typing...">
+					<input id="search" name="Search" type="search" placeholder="Search Product">
+					<input id="submit" type="submit" value="">
 				</form>
+				</div>
 			</div>
 		</div>
 		<!-- //search -->
@@ -115,14 +109,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<!-- //tittle heading -->
 			<!-- product left -->
-			<div class="side-bar col-md-3">
-				<div class="search-hotel">
-					<h3 class="agileits-sear-head">Search Here..</h3>
-					<form action="#" method="post">
-						<input id="search" type="search" placeholder="Product name..." name="search" required="">
-						<input id="submit" type="submit" value="">
-					</form>
-				</div>
+<!--			<div class="side-bar col-md-3">-->
+<!--				<div class="search-hotel">-->
+<!--					<h3 class="agileits-sear-head">Search Here..</h3>-->
+<!--					<form action="#" method="post">-->
+<!--						<input id="search" type="search" placeholder="Product name..." name="search" required="">-->
+<!--						<input id="submit" type="submit" value="">-->
+<!--					</form>-->
+<!--				</div>-->
 				<!-- price range -->
 <!--				<div class="range">-->
 <!--					<h3 class="agileits-sear-head">Price range</h3>-->
@@ -305,7 +299,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- //product left -->
 			<!-- product right -->
-			<div class="left-ads-display col-md-9">
+			<div class="left-ads-display">
 				<div class="wrapper_top_shop">
 					<div class="clearfix"></div>
 					<!-- product-sec1 -->
@@ -583,29 +577,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			var html = ""
 
 			if(result.msrp !== null && result.price < result.msrp){
-				html += `<div class="col-md-4 product-men">
+				html += `<div class="col-md-3 product-men">
 						<div class="product-shoe-info shoe">
 						<div class="men-pro-item">
 
 						<div class="men-thumb-item">
-							<p><a href="${result.thumbnailImageUrl}"><img src="${result.thumbnailImageUrl}"></a></p>
-								<div class="men-cart-pro">
-								<div class="inner-men-cart-pro">
-									<a href = "single.html" class= "link-product-add-cart">Quick View</a>
-								</div> <!-- inner-men-cart-pro -->
-								</div> <!--men-cart-pro -->
-							<span class="product-new-top">New</span>
+							<img src="${result.thumbnailImageUrl}">
 						</div> <!--men-thumb-item -->
 
 						<div class="item-info-product">
-							<h4><a href="single.html">${result.name}</a></h4>
+							<h4>${result.name}</h4>
 								<div class="info-product-price">
-									<div class="grid_meta">
-									<div class="product_price"> Price:
+
+									<h5 class="product_price"> Price:
 									<span class="money">$${result.price}</span>
-									Msrp: <span class="money" id="msrp-price">$${result.msrp}</span>
-									</div> <!-- product_price -->
-									</div> <!-- grid_meta -->
+									<span class="money" id="msrp-price">$${result.msrp}</span>
+									</h5> <!-- product_price -->
+
 								</div> <!-- info-product-price -->
 						</div> <!-- item-info-product -->
 
@@ -642,7 +630,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div> <!--men-pro-item -->
 						</div> <!--product-shoe-info shoe -->
 
-					</div> <!--col-md-4 product-men -->`
+					</div> <!--col-md-4 product-men -->`;
 			}
 
 
