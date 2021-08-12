@@ -547,18 +547,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 //If searched item only has 1 page, do not display pagination options. If it does, display the pagination options and set the page link === to the pagination from the response
 
 		function renderPagination(pagination) {
-			console.log(pagination)
 			if(pagination.totalPages === 1) return "";
 
 			let searchParams = new URLSearchParams(window.location.search);
 			let siteURL = window.location.href.split('?')[0];
 			let paginationHtml = "";
 
-			// add previous button <<
+			// Remove page parameter if exists at url
 			if(searchParams.has('page')) searchParams.delete("page");
 
+			//add previous button <<
 			paginationHtml += renderPreviousIcon(siteURL,searchParams,pagination);
-
 
 			// In between << and >> buttons, include numbered links to view items on a certain page
 			for(let i = 1; i <= pagination.totalPages; i++){
@@ -567,19 +566,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				paginationHtml += `<li class="page-item"><a class="page-link" href="${siteURL}?${searchParams.toString()}">${i}</a></li>`
 			}
 
-			// add next button >>
+			// Remove page parameter if exists at url
 			if(searchParams.has('page')) searchParams.delete("page");
 
+			// add next button >>
 			paginationHtml += renderForwardIcon(siteURL,searchParams,pagination);
 
-
-			// combine the html and return it
+			// combine the pagination html and return it
 			$('ul.pagination').append(paginationHtml);
 
 		}
 
 		function renderPreviousIcon(siteURL,searchParams,pagination){
-			//if curent page === 1, return "", do not show page 1
+			//if current page === 1, return "" to not show << button, else show << button
 			if(pagination.currentPage === 1){
 				return ""
 			} else {
@@ -590,7 +589,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 
 		function renderForwardIcon(siteURL,searchParams,pagination){
-			//if current page === 1, return "", do not show page 1
+			//if next page === 0, return "" to not show >> button, else show >> button
 			if(pagination.nextPage === 0){
 				return ""
 			} else {
