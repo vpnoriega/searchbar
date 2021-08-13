@@ -303,13 +303,13 @@ p.sbmincart-empty-text {
 	padding: 1em;
 }
 .product-men {
-    padding-left: 0;
 	border: #f58462 double;
-	position: relative;
-	display: flex;
 	flex-direction: column;
-	flex-wrap: wrap;
 	align-items: center;
+	height: 34em;
+	width: 20em;
+	margin: 1em;
+
 }
 /*-- Model-Slider --*/
 /*-- effect on products --*/
@@ -331,6 +331,16 @@ p.sbmincart-empty-text {
 	visibility: hidden;
 }
 
+.no-results-found{
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	height: 75px;
+	text-shadow: 0 1px 2px rgb(0 0 0 / 31%);
+	color: #f2ac3d;
+	text-align: center;
+	font-size: 2.5em;
+	margin-top: .5em;
+}
 
 span.money {
     font-size: 1em;
@@ -743,14 +753,14 @@ input.checked {
 }
 
 .wrapper_top_shop {
-    padding: 2em;
+    padding: 1em;
     border: double #a792e0;
 	margin: 2em;
+}
+.product-sec1{
 	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
+	flex-flow: row wrap;
 	justify-content: space-evenly;
-
 }
 /*-- //special deals --*/
 

@@ -64,16 +64,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</form>
 				</div>
 			</div>
-		</div>
-		<!-- //search -->
+		</div><!-- //search -->
+	</div><!-- //banner -->
 
-	</div>
-
-	<!-- //banner -->
-	<!-- top Products -->
+	<!-- Main Content -->
 	<div class="ads-grid_shop">
 		<!-- Top Pagination -->
-		<div class="pagination">
+		<div class="main-pagination">
 			<nav aria-label="Page navigation">
 				<ul class="pagination">
 				</ul>
@@ -81,17 +78,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 
 			<!-- product -->
-			<div class="left-ads-display">
 				<div class="wrapper_top_shop">
 					<!-- product-sec1 -->
 					<div class="product-sec1"></div>
 					<!-- //product-sec1 -->
 				</div>
-			</div>
 			<div class="clearfix"></div>
 		</div>
 		<!-- Bottom Pagination -->
-		<div class="pagination">
+		<div class="main-pagination">
 			<nav aria-label="Page navigation">
 				<ul class="pagination">
 				</ul>
@@ -253,7 +248,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					renderPagination(response.pagination);
 
-				});
+					let html = ""
+					if (response.results.length === 0) {
+						html += `<div class="no-results-found">
+						<span>OOPS! No results found for "${searchParam.substr(3)}!"</span>
+						</div>`
+					}
+					$('.wrapper_top_shop').append(html);
+
+				})
 			}
 		}
 
@@ -325,9 +328,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			var html = ""
 
 			if(result.msrp !== null && result.price < result.msrp){
-				html += `<div class="col-md-2 product-men">
-
-						<div class="men-pro-item">
+				html += `<div class="product-men">
+							<div class="men-pro-item">
 
 						<div class="men-thumb-item">
 							<img src="${result.thumbnailImageUrl}">
@@ -350,8 +352,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					</div> <!--col-md-4 product-men -->`
 			} else {
-				html += `<div class="col-md-2 product-men">
-						<div class="product-shoe-info shoe">
+				html += `<div class="product-men">
 						<div class="men-pro-item">
 
 						<div class="men-thumb-item">
@@ -368,9 +369,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div> <!-- item-info-product -->
 
 						</div> <!--men-pro-item -->
-						</div> <!--product-shoe-info shoe -->
 
-					</div> <!--col-md-4 product-men -->`
+					</div> <!--col-md-4 product-men -->`;
 			}
 
 			$('.product-sec1').append(html);
