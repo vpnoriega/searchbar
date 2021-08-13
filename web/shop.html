@@ -83,11 +83,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- product -->
 			<div class="left-ads-display">
 				<div class="wrapper_top_shop">
-					<div class="clearfix"></div>
 					<!-- product-sec1 -->
 					<div class="product-sec1"></div>
 					<!-- //product-sec1 -->
-					<div class="clearfix"></div>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -181,22 +179,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- js -->
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<!-- //js -->
-	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
-	<script>
-		shoe.render();
-
-		shoe.cart.on('shoe_checkout', function (evt) {
-			var items, len, i;
-
-			if (this.subtotal() > 0) {
-				items = this.items();
-
-				for (i = 0, len = items.length; i < len; i++) {}
-			}
-		});
-	</script>
-	<!-- //cart-js -->
 	<!-- /nav -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<script src="js/classie.js"></script>
@@ -343,8 +325,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			var html = ""
 
 			if(result.msrp !== null && result.price < result.msrp){
-				html += `<div class="col-md-3 product-men">
-						<div class="product-shoe-info shoe">
+				html += `<div class="col-md-2 product-men">
+
 						<div class="men-pro-item">
 
 						<div class="men-thumb-item">
@@ -358,38 +340,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<h5 class="product_price"> Price:
 									<span class="money">$${result.price}</span>
 									<span class="money" id="msrp-price">$${result.msrp}</span>
-									</h5> <!-- product_price -->
+									</h5>
 
 								</div> <!-- info-product-price -->
 						</div> <!-- item-info-product -->
 
 						</div> <!--men-pro-item -->
-						</div> <!--product-shoe-info shoe -->
+
 
 					</div> <!--col-md-4 product-men -->`
 			} else {
-				html += `<div class="col-md-4 product-men">
+				html += `<div class="col-md-2 product-men">
 						<div class="product-shoe-info shoe">
 						<div class="men-pro-item">
 
 						<div class="men-thumb-item">
-							<p><a href="${result.thumbnailImageUrl}"><img src="${result.thumbnailImageUrl}"></a></p>
-								<div class="men-cart-pro">
-								<div class="inner-men-cart-pro">
-									<a href = "single.html" class= "link-product-add-cart">Quick View</a>
-								</div> <!-- inner-men-cart-pro -->
-								</div> <!--men-cart-pro -->
-							<span class="product-new-top">New</span>
+							<img src="${result.thumbnailImageUrl}">
 						</div> <!--men-thumb-item -->
 
 						<div class="item-info-product">
-							<h4><a href="single.html">${result.name}</a></h4>
+							<h4>${result.name}</h4>
 								<div class="info-product-price">
-									<div class="grid_meta">
-									<div class="product_price"> Price:
+									<h5 class="product_price"> Price:
 									<span class="money">$${result.price}</span>
-									</div> <!-- product_price -->
-									</div> <!-- grid_meta -->
+									</h5>
 								</div> <!-- info-product-price -->
 						</div> <!-- item-info-product -->
 
@@ -400,6 +374,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			}
 
 			$('.product-sec1').append(html);
+
 		}
 
 
@@ -412,11 +387,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				//Check URL Search Params in window location to set query to searchInput in order to refresh a page of new results per input
 				if ('URLSearchParams' in window) {
 					let searchParams = new URLSearchParams(window.location.search);
+
 					//checking if there is a current page so it can delete the page param for a new search
 					if(searchParams.has('page')) searchParams.delete("page");
+
 					searchParams.set("q",searchInput);
 					window.location.search = searchParams.toString();
-
 				}
 			});
 
