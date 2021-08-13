@@ -252,6 +252,7 @@ li.dropdown.act a.w3_icons_act {
 }
 .cd-header-buttons li {
 	display: inline-block;
+	border: thin solid white;
 }
 
 .cd-search-trigger,
@@ -1219,11 +1220,14 @@ color: #2fdab8;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    min-height: 565px;
+    min-height: 42em;
 }
+
 .ads-grid_shop {
-    padding: 1em 0;
+	display: flex;
+	flex-direction: column;
 }
+
 ul.short {
     text-align: left;
     padding:12em 0em 0 8em;
@@ -1354,6 +1358,16 @@ p.head_para {
     }
 }
 @media(max-width:1600px){
+
+	.banner_top.innerpage {
+		background: url(../images/background.jpg) no-repeat 0px -138px;
+		background-size: cover;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		min-height: 32em;
+	}
+
     .style-image-1_info {
         padding: 7em 5em;
         height: 400px;
@@ -1375,14 +1389,15 @@ p.head_para {
 }
 @media(max-width:1599px){
     .cd-header-buttons {
-        top: 47px;
-        right: 172px;
+        top: 4%;
+        right: 10%;
     }
     .top_nav_right {
         right: -1%;
     }
 }
 @media(max-width:1440px){
+
 	.ads-grid_shop {
         padding: 1em 0;
     }

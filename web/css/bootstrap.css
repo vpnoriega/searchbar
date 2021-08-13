@@ -4647,9 +4647,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > li > span:hover,
 .pagination > li > a:focus,
 .pagination > li > span:focus {
-  color: #23527c;
-  background-color: #eee;
-  border-color: #ddd;
+  color: #a792e0;
+  background-color: #e5e2f6;
+  border-color: #a792e0;
 }
 .pagination > .active > a,
 .pagination > .active > span,

@@ -23,6 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 	</script>
 	<!-- //custom-theme -->
+
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/shop.css" type="text/css" media="screen" property="" />
 	<link href="css/style7.css" rel="stylesheet" type="text/css" media="all" />
@@ -67,17 +68,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div><!-- //search -->
 	</div><!-- //banner -->
 
+	<!-- Top Pagination -->
+	<div class="main-pagination">
+		<nav aria-label="Page navigation">
+			<ul class="pagination pagination-lg">
+			</ul>
+		</nav>
+	</div>
+
 	<!-- Main Content -->
 	<div class="ads-grid_shop">
-		<!-- Top Pagination -->
-		<div class="main-pagination">
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-				</ul>
-			</nav>
-		</div>
-
-			<!-- product -->
+		<!-- product -->
 				<div class="wrapper_top_shop">
 					<!-- product-sec1 -->
 					<div class="product-sec1"></div>
@@ -86,12 +87,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"></div>
 		</div>
 		<!-- Bottom Pagination -->
-		<div class="main-pagination">
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-				</ul>
-			</nav>
-		</div>
+	<div class="main-pagination">
+		<nav aria-label="Page navigation">
+			<ul class="pagination pagination-lg">
+			</ul>
+		</nav>
+	</div>
 
 	<!-- footer -->
 	<div class="footer_agileinfo_w3">
@@ -262,12 +263,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 //If searched item only has 1 page, do not display pagination options. If it does, display the pagination options and set the page link === to the pagination from the response
 
+
 		function renderPagination(pagination) {
 			if(pagination.totalPages === 1) return "";
 
 			let searchParams = new URLSearchParams(window.location.search);
 			let siteURL = window.location.href.split('?')[0];
 			let paginationHtml = "";
+			let range = [];
+			let rangeWithDots = [];
 
 			// Remove page parameter if exists at url
 			if(searchParams.has('page')) searchParams.delete("page");
@@ -287,7 +291,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				} else{
 					paginationHtml += `<li class="page-item"><a class="page-link" href="${siteURL}?${searchParams.toString()}">${i}</a></li>`
 				}
+
+				// for(let i of range){
+				// 	if (pagination.totalPages) {
+				// 		if (i - pagination.totalPages === 2) {
+				// 			rangeWithDots.push(pagination.totalPages + 1);
+				// 		} else if (i - pagination.totalPages !== 1) {
+				// 			rangeWithDots.push('...');
+				// 		}
+				// 	}
+				// 	rangeWithDots.push(i);
+				// 	pagination.totalPages = i;
+				// }
+
+				// return rangeWithDots;
 			}
+
+
 
 			// Remove page parameter if exists at url
 			if(searchParams.has('page')) searchParams.delete("page");

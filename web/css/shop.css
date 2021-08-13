@@ -298,6 +298,14 @@ p.sbmincart-empty-text {
     padding: 4px 7px;
     display: inline-block;
 }
+
+.main-pagination{
+	margin: 0 2em;
+	display: flex;
+	justify-content: center;
+}
+
+
 .men-pro-item {
     position: relative;
 	padding: 1em;
@@ -538,7 +546,6 @@ ul.stars li a:hover {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	-ms-border-radius: 0px;
-	-o-border-radius: 0px;
 }
 
 #custom-search-input .glyphicon-search {
@@ -567,14 +574,6 @@ ul.stars li a:hover {
 	text-align: center;
 }
 
-/*.search-hotel form #submit{*/
-/*    */
-/*    !*width: 44px;*!*/
-/*    !*height: 39px;*!*/
-/*    */
-/*    !*margin-top: 0;*!*/
-/*	!*margin-bottom: -13px;*!*/
-/*}*/
 
 #submit{
 	background: url(../images/search.png) no-repeat 7px 6px rgba(0, 0, 0, 0.75);
@@ -750,6 +749,21 @@ input.checked {
 .special-sec1:nth-child(3),
 .special-sec1:nth-child(5) {
 	margin: 15px 0;
+}
+.pagination-lg > li > a, .pagination-lg > li > span {
+	color: #f58462;
+	border: double #f58462;
+	font-family: 'Montserrat', sans-serif;
+
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+	z-index: 2;
+	color: #fff;
+	cursor: default;
+	background-color: #f58462;
+	border: double;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .wrapper_top_shop {
