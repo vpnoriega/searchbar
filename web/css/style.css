@@ -83,7 +83,7 @@ a:focus {
     position: absolute;
     z-index: 99;
     left: 6%;
-    margin-top: 47px;
+    margin-top: 3em;
 }
 .navbar-brand {
     font-size: 0.7em;
@@ -94,11 +94,11 @@ a:focus {
     font-weight: 300;
     display: block;
     padding: 0;
-    height: 46px;
+    height: 75px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.31);
 }
 .navbar-brand span {
-    padding: 0.496em .6em;
+    padding: 1.05em .6em;
     display: inline-block;
     background: #fff;
     color: #2e2f2f;
@@ -395,7 +395,7 @@ li.dropdown.act a.w3_icons_act {
 .cd-search {
 	position: absolute;
 	width: 100%;
-	top: 14%;
+	top: 21%;
 	left: 0;
 	z-index: 3;
 	opacity: 0;
@@ -412,7 +412,6 @@ li.dropdown.act a.w3_icons_act {
 	width: 100%;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	-ms-appearance: none;
 	-o-appearance: none;
 	appearance: none;
 	font-size: 1em;
@@ -994,7 +993,7 @@ button.top_shoe_cart {
 /*-- footer --*/
 .footer_agileinfo_w3{
     padding: 4em 0;
-    background: #080808;
+    background: #91a1f6;
 }
 .footer_inner_info_w3ls_agileits{
     width: 90%;
@@ -1037,7 +1036,7 @@ ul.social-nav.model-3d-0.footer-social.social.two {
 	margin:1em 0;
 }
 .address-grid{
-    background: #080808;
+    background: #91a1f6;
     padding: 1em;
 }
 .address-left{
@@ -1215,13 +1214,12 @@ color: #2fdab8;
 }
 /*-- //footer --*/
 .banner_top.innerpage {
-    background: url(../images/banner3.jpg) no-repeat 0px -221px;
+    background: url(../images/background.jpg) no-repeat 0px -190px;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    -moz-background-size: cover;
-    min-height: 225px;
+    min-height: 565px;
 }
 .ads-grid_shop {
     padding: 1em 0;

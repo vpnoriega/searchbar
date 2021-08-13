@@ -561,20 +561,34 @@ ul.stars li a:hover {
     width: 81%;
     outline: none;
     padding: 11px 10px 10px 10px;
-    font-size: 13px;
+    font-size: 1.5em;
     color: #c4c4c4;
     letter-spacing: 1px;
+	height: 3.5em;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	text-align: center;
 }
 
-.search-hotel form #submit{
-    background: url(../images/search.png) no-repeat 7px 6px rgba(0, 0, 0, 0.75);
-    width: 44px;
-    height: 39px;
-    border: none;
-    padding: 0;
-    margin-top: 0;
-	margin-bottom: -13px;
+/*.search-hotel form #submit{*/
+/*    */
+/*    !*width: 44px;*!*/
+/*    !*height: 39px;*!*/
+/*    */
+/*    !*margin-top: 0;*!*/
+/*	!*margin-bottom: -13px;*!*/
+/*}*/
+
+#submit{
+	background: url(../images/search.png) no-repeat 7px 6px rgba(0, 0, 0, 0.75);
+	height: 5.3em;
+	width: 5.3em;
+	margin-top: 0;
+	margin-bottom: -29px;
+	border: none;
+	padding: 0;
 }
+
 
 .search-grid-left {
 	padding: 15px;
@@ -743,8 +757,9 @@ input.checked {
 
 .wrapper_top_shop {
     padding: 1em;
-    border: solid #a792e0;
+    border: double #a792e0;
 	margin: 1em;
+
 }
 /*-- //special deals --*/
 
@@ -829,7 +844,7 @@ span.item_price {
 
 #msrp-price{
 	text-decoration: line-through;
-	text-decoration-color: red;
+	text-decoration-color: #f4a4c4;
 }
 
 button.shoe-cart {
