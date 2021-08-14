@@ -316,7 +316,7 @@ p.sbmincart-empty-text {
 	align-items: center;
 	height: 34em;
 	width: 20em;
-	margin: 1em;
+	margin: 2em 1em;
 
 }
 /*-- Model-Slider --*/
@@ -767,7 +767,7 @@ input.checked {
 }
 
 .wrapper_top_shop {
-    padding: 1em;
+    padding: 3em 1em;
     border: double #a792e0;
 	margin: 2em;
 }

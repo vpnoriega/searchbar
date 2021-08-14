@@ -1030,6 +1030,7 @@ ul.social-nav.model-3d-0.footer-social.social.two {
 }
 
 .sign-gd h4,.sign-gd-two h4 {
+	text-align: left;
     color: #fff;
     font-size: 1.2em;
     margin-bottom: 25px;
@@ -1063,7 +1064,7 @@ ul.social-nav.model-3d-0.footer-social.social.two {
 	float:left;
 	width:10%;
 }
-.address-left i.fa.fa-phone,.address-left i.fa.fa-envelope,.address-left i.fa.fa-map-marker{
+.address-left i.fa.fa-phone,.address-left i.fa.fa-envelope,.address-left i.fa.fa-map-marker,.address-left i.fa.fa-linkedin,.address-left i.fa.fa-github,.address-left i.fa.fa-user{
     color: #FFFFFF;
     font-size: 1em;
 }
@@ -1075,20 +1076,23 @@ ul.social-nav.model-3d-0.footer-social.social.two {
     color: #FFFFFF;
     font-size: 0.9em;
     margin: 0;
-    font-weight: 600;
     letter-spacing: 1px;
 }
 .address-right p{
     margin: 1em 0 0 0;
     font-size: .9em;
-    color: #565656;
+    color: #FFFFFF;
 }
-.address-right p a{
-	color: #f2ac3d;
-    text-decoration: none;
+.address-right a{
+	color: white;
+	text-transform: none;
+	font-weight: lighter;
 }
 .address-right p a:hover{
-	color:#b5b5b5;
+	color: #f2ac3d;
+}
+.address-right h6 a:hover{
+	color: #f2ac3d;
 }
 .address-right p span{
 	display:block;
