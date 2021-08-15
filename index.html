@@ -376,7 +376,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             html += `<div class="product-men">
 							<div class="men-pro-item">
 								<div class="men-thumb-item">
-									<img src="${result.thumbnailImageUrl}">
+									<img src="${result.thumbnailImageUrl}" onError="this.onerror=null;this.src='/images/No-image-found.jpeg';"/>
 								</div> <!--men-thumb-item -->
 							<div class="item-info-product">
 								<h4>${result.name}</h4>
