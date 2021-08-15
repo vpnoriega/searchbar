@@ -359,7 +359,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             html += `<div class="product-men">
 							<div class="men-pro-item">
 							<div class="men-thumb-item">
-								<img src="${result.thumbnailImageUrl}" onError="this.onerror=null;this.src='/images/No-image-found.jpeg';"/>
+								<img alt="thumbnail-image" src="${result.thumbnailImageUrl}" onError="this.onerror=null;this.src='searchbar/images/No-image-found.jpeg';"/>
 							</div>
 							<div class="item-info-product">
 								<h4>${result.name}</h4>
@@ -376,7 +376,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             html += `<div class="product-men">
 							<div class="men-pro-item">
 								<div class="men-thumb-item">
-									<img src="${result.thumbnailImageUrl}" onError="this.onerror=null;this.src='/images/No-image-found.jpeg';"/>
+									<img alt="thumbnail-image" src="${result.thumbnailImageUrl}" onError="this.onerror=null;this.src='searchbar/images/No-image-found.jpeg';"/>
 								</div> <!--men-thumb-item -->
 							<div class="item-info-product">
 								<h4>${result.name}</h4>
@@ -387,7 +387,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</div> <!-- info-product-price -->
 							</div> <!-- item-info-product -->
 							</div> <!--men-pro-item -->
-						</div> <!--col-md-4 product-men -->`
+						</div> <!--col-md-4 product-men -->`;
         }
         $('.product-sec1').append(html);
     }
