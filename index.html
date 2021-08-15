@@ -352,10 +352,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
     }
 
-    //Function to display MSRP price if exists and is greater than price, crossed out
+    //Function to display price if not undefined, display MSRP price crossed out if exists and is greater than price
     function renderResults(result) {
         let html = ""
-        if (result.msrp !== null && result.price < result.msrp) {
+        if (result.price === undefined) {
+            html += `<div class="product-men">
+							<div class="men-pro-item">
+							<div class="men-thumb-item">
+								<img alt="thumbnail-image" src="${result.thumbnailImageUrl}" onError="this.onerror=null;this.src='images/No-image-found.jpeg';"/>
+							</div>
+							<div class="item-info-product">
+								<h4>${result.name}</h4>
+									<div class="info-product-price">
+										<h5 class="product_price"> Price:
+											<span class="money">Not Listed</span>
+										</h5>
+									</div> <!-- info-product-price -->
+							</div> <!-- item-info-product -->
+							</div> <!--men-pro-item -->
+						</div> <!--product-men -->`
+        } else if (result.msrp !== null && result.price < result.msrp) {
             html += `<div class="product-men">
 							<div class="men-pro-item">
 							<div class="men-thumb-item">
